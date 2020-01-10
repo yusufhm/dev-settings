@@ -11,7 +11,7 @@ if [ -e "${vs_user_settings_file}" ]; then
     echo "VSCode installed and user settings file exists."
 elif [ -d "${vs_user_dir}" ]; then
     echo "VSCode installed but no user settings file yet; linking file."
-    ln -s `pwd`/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
+    ln -s `pwd`/vscode-settings.json ${vs_user_settings_file}
 else
     echo "VSCode not installed"
 fi
