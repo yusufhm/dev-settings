@@ -1,0 +1,5 @@
+ahoyapi: v2
+commands:
+  vsc-settings:
+    usage: Links the Visual Studio Code settings from this repository to the user settings file.
+    cmd: ./vscode-setup.sh
