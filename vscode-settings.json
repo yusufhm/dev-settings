@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "editor.rulers": [
+        80
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "workbench.tree.indent": 16,
+    "editor.wordWrap": "on"
+}
