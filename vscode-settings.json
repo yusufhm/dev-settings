@@ -29,4 +29,6 @@
     "workbench.colorTheme": "Visual Studio Light",
     "workbench.tree.indent": 16,
     "terminal.integrated.copyOnSelection": true,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.enableFileLinks": false,
 }
