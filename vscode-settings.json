@@ -28,4 +28,5 @@
     },
     "workbench.colorTheme": "Visual Studio Light",
     "workbench.tree.indent": 16,
+    "terminal.integrated.copyOnSelection": true,
 }
