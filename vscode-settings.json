@@ -1,9 +1,26 @@
 {
-    "editor.wordWrap": "on",
+    "breadcrumbs.enabled": true,
+    "editor.autoIndent": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": true,
     "editor.rulers": [
         80
     ],
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "off",
+    "editor.detectIndentation": true,
     "explorer.confirmDragAndDrop": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "html.format.enable": true,
+    "html.format.wrapLineLength": 80,
+    "phpcs.enable": false,
+    "telemetry.enableTelemetry": false,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.enableFileLinks": false,
     "workbench.colorCustomizations": {
         "terminal.background":"#FDF6E3",
         "terminal.foreground":"#586E75",
@@ -28,7 +45,8 @@
     },
     "workbench.colorTheme": "Visual Studio Light",
     "workbench.tree.indent": 16,
-    "terminal.integrated.copyOnSelection": true,
-    "terminal.external.osxExec": "iTerm.app",
-    "terminal.integrated.enableFileLinks": false,
+
+    "emptyIndent.removeIndent": true,
+    "emptyIndent.highlightIndent": false,
+    "emptyIndent.highlightColor": "rgba(246,36,89,0.6)"
 }
