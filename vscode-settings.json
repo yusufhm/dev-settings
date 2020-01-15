@@ -48,5 +48,6 @@
 
     "emptyIndent.removeIndent": true,
     "emptyIndent.highlightIndent": false,
-    "emptyIndent.highlightColor": "rgba(246,36,89,0.6)"
+    "emptyIndent.highlightColor": "rgba(246,36,89,0.6)",
+    "search.useIgnoreFiles": false
 }
