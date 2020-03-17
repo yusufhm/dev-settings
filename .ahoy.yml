@@ -1,5 +1,22 @@
 ahoyapi: v2
 commands:
+  link-bashrc:
+    usage: Links bashrc to the one in this repository.
+    cmd: |
+      if [ -L ~/.bashrc ]; then
+        echo '.bashrc is already symlinked'
+        exit 0
+      elif [ -e ~/.bashrc ]; then
+        mv ~/.bashrc ~/.bashrc.orig
+        echo 'Original .bashrc moved to ~/.bashrc.orig'
+      fi
+      ln -s $(pwd)/bashrc ~/.bashrc
+  install-packages:
+    usage: Install regularly-used homebrew packages.
+    cmd: |
+      brew install dnsmasq httpd mariadb memcached
+      brew tap homebrew/cask
+      brew cask install gimp skitch visual-studio-code
   set-wallpaper:
     usage: Replaces the Deloitte wallpaper by the Mac one.
     cmd: ./set-wallpaper.sh
