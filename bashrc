@@ -32,3 +32,7 @@ alias local_server_stop='
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 alias ve='vagrant exec'
+
+export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$PATH:/Users/yhasanmiyan/Library/Application Support/KomodoIDE/12.0/XRE/state" # ActiveState State Tool

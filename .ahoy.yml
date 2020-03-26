@@ -14,9 +14,18 @@ commands:
   install-packages:
     usage: Install regularly-used homebrew packages.
     cmd: |
-      brew install dnsmasq httpd mariadb memcached
+      brew install libiconv openldap
       brew tap homebrew/cask
       brew cask install gimp skitch visual-studio-code
+  install-lamp:
+    usage: Install AMP
+    cmd: brew install dnsmasq httpd mariadb php@7.3
+  install-memcache:
+    usage: Install memcache (with dependencies)
+    cmd: |
+      brew install memcached libmemcached zlib
+      echo 'Installing PECL memcached; it\'s safe to just press enter for the prompts'
+      pecl install memcached
   set-wallpaper:
     usage: Replaces the Deloitte wallpaper by the Mac one.
     cmd: ./set-wallpaper.sh
