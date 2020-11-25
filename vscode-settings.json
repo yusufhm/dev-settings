@@ -1,6 +1,6 @@
 {
     "breadcrumbs.enabled": true,
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false,
     "editor.insertSpaces": true,
@@ -50,5 +50,7 @@
     "emptyIndent.highlightIndent": false,
     "emptyIndent.highlightColor": "rgba(246,36,89,0.6)",
     "search.useIgnoreFiles": false,
-    "diffEditor.ignoreTrimWhitespace": true
+    "diffEditor.ignoreTrimWhitespace": true,
+    "update.mode": "none",
+    "terminal.integrated.shell.osx": "/bin/zsh"
 }
