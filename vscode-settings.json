@@ -52,5 +52,6 @@
     "search.useIgnoreFiles": false,
     "diffEditor.ignoreTrimWhitespace": true,
     "update.mode": "none",
-    "terminal.integrated.shell.osx": "/bin/zsh"
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "git.confirmSync": false
 }
