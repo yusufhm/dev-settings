@@ -11,6 +11,17 @@ commands:
         echo 'Original .bashrc moved to ~/.bashrc.orig'
       fi
       ln -s $(pwd)/bashrc ~/.bashrc
+  link-zshrc:
+    usage: Links zshrc to the one in this repository.
+    cmd: |
+      if [ -L ~/.zshrc ]; then
+        echo '.zshrc is already symlinked'
+        exit 0
+      elif [ -e ~/.zshrc ]; then
+        mv ~/.zshrc ~/.zshrc.orig
+        echo 'Original .zshrc moved to ~/.zshrc.orig'
+      fi
+      ln -s $(pwd)/zshrc ~/.zshrc
   install-packages:
     usage: Install regularly-used homebrew packages.
     cmd: |
