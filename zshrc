@@ -1,3 +1,4 @@
+# Install pure theme with `git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"`
 fpath+=$HOME/.zsh/pure
 
 autoload -U promptinit; promptinit

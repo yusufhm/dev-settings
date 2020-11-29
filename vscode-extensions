@@ -1,5 +1,3 @@
-bbenoist.vagrant
-bung87.vscode-gemfile
 donjayamanne.githistory
 dssiqueira.drupal-8-snippets
 eg2.vscode-npm-script
@@ -9,9 +7,6 @@ felixfbecker.php-pack
 janisdd.vscode-edit-csv
 k--kato.intellij-idea-keybindings
 marcostazi.VS-code-drupal
-mrmlnc.vscode-apache
-ms-azuretools.vscode-docker
-ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.remote-wsl
