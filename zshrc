@@ -1,15 +1,18 @@
 # Install pure theme with `git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"`
 fpath+=$HOME/.zsh/pure
 
-autoload -U promptinit; promptinit
+autoload -Uz promptinit
+promptinit
 prompt pure
 
-export HISTFILESIZE=100000
-export HISTSIZE=100000
-setopt INC_APPEND_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_EXPIRE_DUPS_FIRST
+setopt histignorealldups sharehistory
+
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

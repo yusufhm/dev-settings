@@ -53,5 +53,6 @@
     "diffEditor.ignoreTrimWhitespace": true,
     "update.mode": "none",
     "terminal.integrated.shell.osx": "/bin/zsh",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "workbench.startupEditor": "newUntitledFile"
 }
