@@ -54,5 +54,6 @@
     "update.mode": "none",
     "terminal.integrated.shell.osx": "/bin/zsh",
     "git.confirmSync": false,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "phpcs.executablePath": "./vendor/bin/phpcs"
 }
