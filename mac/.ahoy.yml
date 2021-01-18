@@ -46,3 +46,8 @@ commands:
   vsc-save-extensions-list:
     usage: Saves a list of extensions installed globally. Don't forget to commit afterwards.
     cmd: code --list-extensions > vscode-extensions
+  setup-docksal-dns:
+    usage: Sets up DNS for docksal.
+    cmd: |
+      cd docksal-dnsmasq && docker-compose up -d
+      sudo ln -s $(pwd)/docksal-resolver /etc/resolver/docksal
