@@ -11,3 +11,4 @@ services:
       - 53:53/udp
     cap_add:
       - NET_ADMIN
+    restart: always

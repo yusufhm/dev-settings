@@ -50,4 +50,4 @@ commands:
     usage: Sets up DNS for docksal.
     cmd: |
       cd docksal-dnsmasq && docker-compose up -d
-      sudo ln -s $(pwd)/docksal-resolver /etc/resolver/docksal
+      sudo ln -s $(pwd)/docksal-resolver /etc/resolver/docksal.site
