@@ -50,4 +50,5 @@ commands:
     usage: Sets up DNS for docksal.
     cmd: |
       cd docksal-dnsmasq && docker-compose up -d
-      sudo ln -s $(pwd)/docksal-resolver /etc/resolver/docksal.site
+      # Do not set symlink name as docksal.site because `fin system reset` deletes that file.
+      sudo ln -s $(pwd)/docksal-resolver /etc/resolver/dev-machine
