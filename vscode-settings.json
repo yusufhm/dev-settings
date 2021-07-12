@@ -43,17 +43,21 @@
         "terminal.ansiWhite":"#586E75",
         "terminal.ansiYellow":"#B58900"
     },
-    "workbench.colorTheme": "Visual Studio Light",
     "workbench.tree.indent": 16,
 
     "emptyIndent.removeIndent": true,
     "emptyIndent.highlightIndent": false,
     "emptyIndent.highlightColor": "rgba(246,36,89,0.6)",
     "search.useIgnoreFiles": false,
-    "diffEditor.ignoreTrimWhitespace": true,
     "update.mode": "none",
     "terminal.integrated.shell.osx": "/bin/zsh",
     "git.confirmSync": false,
     "workbench.startupEditor": "newUntitledFile",
-    "phpcs.executablePath": "./vendor/bin/phpcs"
+    "phpcs.executablePath": "./vendor/bin/phpcs",
+    "docker.showStartPage": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "workbench.colorTheme": "Monokai Dimmed",
+    "python.showStartPage": false
 }
