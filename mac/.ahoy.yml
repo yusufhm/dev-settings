@@ -21,7 +21,7 @@ commands:
         mv ~/.zshrc ~/.zshrc.orig
         echo 'Original .zshrc moved to ~/.zshrc.orig'
       fi
-      ln -s $(pwd)/zshrc ~/.zshrc
+      ln -s $(pwd)/../zshrc ~/.zshrc
   install-packages:
     usage: Install regularly-used homebrew packages.
     cmd: |

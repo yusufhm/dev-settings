@@ -1,9 +1,10 @@
-# Install pure theme with `git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"`
-fpath+=$HOME/.zsh/pure
+# Install oh-my-zsh: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Move omz's created file: mv ~/.zshrc ~/.zshrc.oh-my-zsh.bak
 
-autoload -Uz promptinit
-promptinit
-prompt pure
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="bira"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
 
 setopt histignorealldups sharehistory
 
@@ -16,7 +17,9 @@ bindkey "^[[1;5C" forward-word
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Alias for freeing cache in WSL2.
 alias wsl_drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
+
+export ITERM2_SQUELCH_MARK=1
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
