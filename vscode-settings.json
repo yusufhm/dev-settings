@@ -56,8 +56,18 @@
     "phpcs.executablePath": "./vendor/bin/phpcs",
     "docker.showStartPage": false,
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
+        "*.ipynb": "jupyter-notebook"
     },
-    "workbench.colorTheme": "Monokai Dimmed",
-    "python.showStartPage": false
+    "workbench.colorTheme": "Solarized Light",
+    "python.showStartPage": false,
+    "files.associations": {
+        "Vagrantfile.local": "ruby"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "redhat.telemetry.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false
 }

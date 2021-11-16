@@ -12,7 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 
 #export PS1='$ '
 
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:/usr/local/sbin:/usr/local/go/bin:$HOME/go/bin"
 
 # Install bash-it (https://bash-it.readthedocs.io/en/latest/installation/).
 # Theme: zork
@@ -20,3 +20,8 @@ export PATH="/usr/local/sbin:$PATH"
 # Aliases
 alias dps='docker ps'
 alias dcp='docker-compose'
+
+alias kubegov1="kubectl --kubeconfig $HOME/.kube/config-govcms-openshift"
+alias kubegov3="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms3"
+alias kubegov5="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms5"
+alias kubegov6="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms6"
