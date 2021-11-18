@@ -24,4 +24,9 @@ alias wsl_drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff
 export ITERM2_SQUELCH_MARK=1
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.9/bin:$PATH"
+
+alias kubegov1="kubectl --kubeconfig $HOME/.kube/config-govcms-openshift"
+alias kubegov3="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms3"
+alias kubegov5="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms5"
+alias kubegov6="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms6"
