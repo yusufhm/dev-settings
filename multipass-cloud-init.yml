@@ -1,0 +1,37 @@
+package_update: true
+package_upgrade: true
+
+# The rendered script for runcmd is at /var/lib/cloud/instance/scripts/runcmd.
+runcmd:
+  # Remove snaps.
+  - snap remove --purge lxd &&
+    snap remove --purge core20 &&
+    snap remove --purge snapd &&
+    rm -rf /var/cache/snapd/ &&
+    apt-get autoremove --purge snapd --yes && apt-mark hold snapd
+
+  # Install docker.
+  - curl -fsSL https://get.docker.com | sh && usermod -aG docker ubuntu
+
+  - export BIN_ARCH=arm64 &&
+    export PYGMY_VERSION=0.8.0 &&
+    export GO_VERSION=1.17.6
+
+  # Install pygmy.
+  - curl -LO https://github.com/pygmystack/pygmy/releases/download/v${PYGMY_VERSION}/pygmy-go_${PYGMY_VERSION}_linux_${BIN_ARCH}.tar.gz &&
+    tar -xf pygmy-go_${PYGMY_VERSION}_linux_${BIN_ARCH}.tar.gz pygmy-go &&
+    mv pygmy-go /usr/local/bin/pygmy &&
+    rm pygmy-go_${PYGMY_VERSION}_linux_${BIN_ARCH}.tar.gz
+
+  # Install go.
+  - curl -LO https://go.dev/dl/go${GO_VERSION}.linux-${BIN_ARCH}.tar.gz &&
+    sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-${BIN_ARCH}.tar.gz &&
+    echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/go.sh > /dev/null &&
+    rm go${GO_VERSION}.linux-${BIN_ARCH}.tar.gz
+
+  # Import ssh key from github for user ubuntu.
+  - sudo -H -u ubuntu bash -c 'ssh-import-id-gh yusufhm'
+
+power_state:
+  mode: reboot
+  timeout: 60

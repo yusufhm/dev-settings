@@ -27,8 +27,11 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.9/bin:$PATH"
 
-alias kubegov1="kubectl --kubeconfig $HOME/.kube/config-govcms-openshift"
-alias kubegov3="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms3"
-alias kubegov5="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms5"
-alias kubegov6="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms6"
-alias kubegov7="kubectl --kubeconfig $HOME/.kube/config-amazeeio-govcms7"
+alias kubegov3="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms3"
+alias kubegov5="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms5"
+alias kubegov6="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms6"
+alias kubegov7="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms7"
+alias kubegov9="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms9"
+
+eval "$(direnv hook zsh)"
+
