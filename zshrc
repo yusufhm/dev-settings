@@ -6,6 +6,16 @@ ZSH_THEME="bira"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+# Install with `brew install kube-ps1`.
+if [[ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]]; then
+    source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
+    # Change bira theme's prompt.
+    # See https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/bira.zsh-theme
+    kube_ps1_prompt='$(kube_ps1)'
+    PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${kube_ps1_prompt}
+╰─%B${user_symbol}%b "
+fi
+
 setopt histignorealldups sharehistory
 
 HISTSIZE=100000
@@ -27,11 +37,22 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.9/bin:$PATH"
 
-alias kubegov3="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms3"
-alias kubegov5="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms5"
-alias kubegov6="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms6"
-alias kubegov7="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms7"
-alias kubegov9="kubectl --context=arn:aws:eks:ap-southeast-2:863998171688:cluster/amazeeio-govcms9"
+# Install with `curl -LO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases`
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
+# Install with `brew install kubectx`
+alias kctx="kubectx"
+alias kns="kubens"
+
+alias kgov3="kubectl --context=amazeeio-govcms3"
+alias kgov4="kubectl --context=amazeeio-govcms4"
+alias kgov5="kubectl --context=amazeeio-govcms5"
+alias kgov6="kubectl --context=amazeeio-govcms6"
+alias kgov7="kubectl --context=amazeeio-govcms7"
+alias kgov9="kubectl --context=amazeeio-govcms9"
+alias kkurnik="kubectl --kubeconfig=/Users/yusuf/projects/server-ops/.kubeconfig/kurnik.yaml"
+alias ksalsa="kubectl --kubeconfig=$HOME/.kube/config-salsa-hosting"
 
 eval "$(direnv hook zsh)"
 
+command -v flux >/dev/null && . <(flux completion zsh)
