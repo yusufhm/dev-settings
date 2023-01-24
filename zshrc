@@ -35,7 +35,7 @@ alias wsl_drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff
 export ITERM2_SQUELCH_MARK=1
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.10/bin:$PATH"
 
 # Install with `curl -LO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases`
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
@@ -56,3 +56,28 @@ alias ksalsa="kubectl --kubeconfig=$HOME/.kube/config-salsa-hosting"
 eval "$(direnv hook zsh)"
 
 command -v flux >/dev/null && . <(flux completion zsh)
+
+export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config-amazeeio-sdp:$HOME/.kube/config-salsa-hosting:$HOME/projects/server-ops/.kubeconfig/izmir.yaml:$HOME/projects/server-ops/.kubeconfig/kurnik.yaml
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yusuf/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yusuf/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Enable completion for kubebuilder.
+command -v kubebuilder >/dev/null && . <(kubebuilder completion zsh)
+
+if [ -f '/opt/homebrew/opt/asdf/libexec/asdf.sh' ]; then . /opt/homebrew/opt/asdf/libexec/asdf.sh; fi
+
+if [ -f '$HOME/.asdf/asdf.sh' ]; then . $HOME/.asdf/asdf.sh; fi
+
+# Fix for mouse scrolling in iterm2 with Secure Keyboard Entry enabled.
+# See https://gitlab.com/gnachman/iterm2/-/issues/5863#note_93694055
+export LESS="-R"
+
+# Add global composer bins.
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
