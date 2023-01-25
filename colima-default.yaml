@@ -161,7 +161,7 @@ provision:
       set -eux
       # Provision only for Ubuntu layer.
       [ ! -f "/etc/lsb-release" ] && exit 0
-      apt-get update && apt-get install --yes direnv less vim zsh
+      apt-get update && apt-get install --yes direnv less python3 python3-pip vim zsh
       [ -f "/usr/local/bin/ahoy" ] && exit 0
       os=$(uname -s | tr [:upper:] [:lower:])
       architecture=$(case $(uname -m) in x86_64 | amd64) echo "amd64" ;; aarch64 | arm64 | armv8) echo "arm64" ;; *) echo "amd64" ;; esac)
