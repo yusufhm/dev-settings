@@ -159,8 +159,10 @@ provision:
   - mode: system
     script: |
       set -eux
+      # Provision only for Ubuntu layer.
+      [ ! -f "/etc/lsb-release" ] && exit 0
       apt-get update && apt-get install --yes direnv less vim zsh
-      [ -f /usr/local/bin/ahoy ] && exit 0
+      [ -f "/usr/local/bin/ahoy" ] && exit 0
       os=$(uname -s | tr [:upper:] [:lower:])
       architecture=$(case $(uname -m) in x86_64 | amd64) echo "amd64" ;; aarch64 | arm64 | armv8) echo "arm64" ;; *) echo "amd64" ;; esac)
       curl -fsSL https://github.com/ahoy-cli/ahoy/releases/latest/download/ahoy-bin-$os-$architecture -o /usr/local/bin/ahoy
@@ -173,12 +175,13 @@ provision:
   - mode: user
     script: |
       set -eux
+      # Provision only for Ubuntu layer.
+      [ ! -f "/etc/lsb-release" ] && exit 0
       cd /home/yusuf.linux
       mkdir -p sites
-      mkdir -p .docker/cli-plugins
-      [ ! -L .zshrc ] && [ -f .zshrc ] && rm .zshrc
       [ ! -d ".oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       [ ! -d ".asdf" ] && git clone https://github.com/asdf-vm/asdf.git .asdf --branch v0.11.1
+      [ ! -L .zshrc ] && [ -f .zshrc ] && rm .zshrc
       ln -s /Users/yusuf/.zshrc .zshrc
 
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
