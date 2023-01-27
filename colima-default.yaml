@@ -161,13 +161,18 @@ provision:
       set -eux
       # Provision only for Ubuntu layer.
       [ ! -f "/etc/lsb-release" ] && exit 0
-      apt-get update && apt-get install --yes direnv less php8.1-cli python3 python3-pip vim zsh
+      apt-get update && apt-get install --yes direnv less \
+        php8.1-cli php8.1-mysql php8.1-xml \
+        python3 python3-pip vim zsh
       [ -f "/usr/local/bin/ahoy" ] && exit 0
       os=$(uname -s | tr [:upper:] [:lower:])
       architecture=$(case $(uname -m) in x86_64 | amd64) echo "amd64" ;; aarch64 | arm64 | armv8) echo "arm64" ;; *) echo "amd64" ;; esac)
       curl -fsSL https://github.com/ahoy-cli/ahoy/releases/latest/download/ahoy-bin-$os-$architecture -o /usr/local/bin/ahoy
       chown yusuf /usr/local/bin/ahoy
       chmod +x /usr/local/bin/ahoy
+      curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar
+      chmod +x drush.phar
+      mv drush.phar /usr/local/bin/drush
       usermod --shell /bin/zsh yusuf
   - mode: user
     script: |
