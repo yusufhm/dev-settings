@@ -181,6 +181,7 @@ provision:
       # Provision only for Ubuntu layer.
       [ ! -f "/etc/lsb-release" ] && exit 0
       cd /home/yusuf.linux
+      go install github.com/cortesi/modd/cmd/modd@latest
       pip install docker-compose
       mkdir -p sites
       [ ! -d ".oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
