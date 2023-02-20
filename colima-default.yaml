@@ -162,7 +162,7 @@ provision:
       set -eux
       # Provision only for Ubuntu layer.
       [ ! -f "/etc/lsb-release" ] && exit 0
-      apt-get update && apt-get install --yes direnv less \
+      apt-get update && apt-get install --yes direnv golang less \
         php8.1-cli php8.1-mysql php8.1-xml \
         python3 python3-pip vim zsh
       [ -f "/usr/local/bin/ahoy" ] && exit 0
