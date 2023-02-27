@@ -13,6 +13,8 @@ the default instance's config and start it.
 mkdir -p ~/.colima/default
 ln -s ~/dev-settings/colima-default.yaml ~/.colima/default/colima.yaml
 colima start
+colima ssh /Users/yusuf/dev-settings/colima/default/root-provisioning.sh
+colima ssh /Users/yusuf/dev-settings/colima/default/user-provisioning.sh
 ```
 
 Set up VSCode for Remote SSH:

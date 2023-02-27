@@ -24,12 +24,12 @@ kubernetes:
   # Enable kubernetes.
   # Default: false
   enabled: true
-
+  
   # Kubernetes version to use.
   # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
   # Default: latest stable release
   version: v1.22.2+k3s1
-
+  
   # Disable k3s features [coredns servicelb traefik local-storage metrics-server].
   # All features are enabled unless disabled.
   #
@@ -53,7 +53,7 @@ network:
   # NOTE: this is currently macOS only and ignored on Linux.
   # Default: false
   address: false
-
+  
   # Custom DNS resolvers for the virtual machine.
   #
   # EXAMPLE
@@ -61,7 +61,7 @@ network:
   #
   # Default: []
   dns: []
-
+  
   # DNS hostnames to resolve to custom targets using the internal resolver.
   # This setting has no effect if a custom DNS resolver list is supplied above.
   # It does not configure the /etc/hosts files of any machine or container.
@@ -71,7 +71,7 @@ network:
   # dnsHosts:
   #   example.com: 1.2.3.4
   dnsHosts: {}
-
+  
   # Network driver to use (slirp, gvproxy), (requires vmType `qemu`)
   #   - slirp is the default user mode networking provided by Qemu
   #   - gvproxy is an alternative to VPNKit based on gVisor https://github.com/containers/gvisor-tap-vsock
@@ -111,7 +111,7 @@ docker: {}
 # vz is macOS virtualization framework and requires macOS 13
 #
 # Default: qemu
-vmType: qemu
+vmType: vz
 
 # Volume mount driver for the virtual machine (virtiofs, 9p, sshfs).
 #
@@ -156,39 +156,7 @@ layer: true
 #       touch ~/.provision
 #
 # Default: []
-provision:
-  - mode: system
-    script: |
-      set -eux
-      # Provision only for Ubuntu layer.
-      [ ! -f "/etc/lsb-release" ] && exit 0
-      apt-get update && apt-get install --yes direnv golang less \
-        php8.1-cli php8.1-mysql php8.1-xml \
-        python3 python3-pip vim zsh
-      [ -f "/usr/local/bin/ahoy" ] && exit 0
-      os=$(uname -s | tr [:upper:] [:lower:])
-      architecture=$(case $(uname -m) in x86_64 | amd64) echo "amd64" ;; aarch64 | arm64 | armv8) echo "arm64" ;; *) echo "amd64" ;; esac)
-      curl -fsSL https://github.com/ahoy-cli/ahoy/releases/latest/download/ahoy-bin-$os-$architecture -o /usr/local/bin/ahoy
-      chown yusuf /usr/local/bin/ahoy
-      chmod +x /usr/local/bin/ahoy
-      curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar
-      chmod +x drush.phar
-      mv drush.phar /usr/local/bin/drush
-      usermod --shell /bin/zsh yusuf
-  - mode: user
-    script: |
-      set -eux
-      # Provision only for Ubuntu layer.
-      [ ! -f "/etc/lsb-release" ] && exit 0
-      cd /home/yusuf.linux
-      go install github.com/cortesi/modd/cmd/modd@latest
-      pip install docker-compose
-      mkdir -p sites
-      [ ! -d ".oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      [ ! -d ".asdf" ] && git clone https://github.com/asdf-vm/asdf.git .asdf --branch v0.11.1
-      [ ! -L .zshrc ] && [ -f .zshrc ] && rm .zshrc
-      ln -s /Users/yusuf/.zshrc .zshrc
-      ln -s /Users/yusuf/.gitconfig .gitconfig
+provision: []
 
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
 # SSH config will still be generated in ~/.colima/ssh_config regardless.
