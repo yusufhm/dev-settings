@@ -7,7 +7,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Install with `brew install kube-ps1`.
-if [[ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]]; then
+if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then
     source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
     # Change bira theme's prompt.
     # See https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/bira.zsh-theme
@@ -82,4 +82,4 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
 
-if [ -d "$HOME/.local/bin" ]; then export PATH="$HOME/.local/bin:$PATH"; fi
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
