@@ -57,7 +57,7 @@ eval "$(direnv hook zsh)"
 
 command -v flux >/dev/null && . <(flux completion zsh)
 
-export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config-amazeeio-sdp:$HOME/.kube/config-salsa-hosting:$HOME/projects/server-ops/.kubeconfig/izmir.yaml:$HOME/projects/server-ops/.kubeconfig/kurnik.yaml
+export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config-amazeeio-sdp:$HOME/.kube/config-salsa-hosting:$HOME/.kube/config-oracle
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc'; fi
