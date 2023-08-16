@@ -1,11 +1,11 @@
 # Number of CPUs to be allocated to the virtual machine.
 # Default: 2
-cpu: 6
+cpu: 4
 
 # Size of the disk in GiB to be allocated to the virtual machine.
 # NOTE: changing this has no effect after the virtual machine has been created.
 # Default: 60
-disk: 256
+disk: 60
 
 # Size of the memory in GiB to be allocated to the virtual machine.
 # Default: 2
@@ -13,7 +13,7 @@ memory: 8
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
 # Default: host
-arch: ""
+arch: aarch64
 
 # Container runtime to be used (docker, containerd).
 # Default: docker
@@ -23,16 +23,17 @@ runtime: docker
 kubernetes:
   # Enable kubernetes.
   # Default: false
-  enabled: false
+  enabled: true
   
   # Kubernetes version to use.
   # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
   # Default: latest stable release
-  version: v1.22.2+k3s1
+  version: v1.23.17+k3s1
   
   # Additional args to pass to k3s https://docs.k3s.io/cli/server
   # Default: traefik is disabled
-  k3sArgs: []
+  k3sArgs:
+    - --disable=traefik
 
 # Auto-activate on the Host for client access.
 # Setting to true does the following on startup
@@ -46,7 +47,7 @@ network:
   # Assign reachable IP address to the virtual machine.
   # NOTE: this is currently macOS only and ignored on Linux.
   # Default: false
-  address: false
+  address: true
   
   # Custom DNS resolvers for the virtual machine.
   #
@@ -111,7 +112,7 @@ vmType: vz
 
 # Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
 # Default: false
-rosetta: false
+rosetta: true
 
 # Volume mount driver for the virtual machine (virtiofs, 9p, sshfs).
 #
@@ -141,7 +142,7 @@ cpuType: ""
 # the Ubuntu session.
 #
 # Default: false
-layer: true
+layer: false
 
 # Custom provision scripts for the virtual machine.
 # Provisioning scripts are executed on startup and therefore needs to be idempotent.
