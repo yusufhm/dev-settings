@@ -9,7 +9,7 @@ disk: 256
 
 # Size of the memory in GiB to be allocated to the virtual machine.
 # Default: 2
-memory: 8
+memory: 12
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
 # Default: host
@@ -28,7 +28,7 @@ kubernetes:
   # Kubernetes version to use.
   # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
   # Default: latest stable release
-  version: v1.22.2+k3s1
+  version: v1.22.2
   
   # Additional args to pass to k3s https://docs.k3s.io/cli/server
   # Default: traefik is disabled
@@ -54,9 +54,7 @@ network:
   # dns: [8.8.8.8, 1.1.1.1]
   #
   # Default: []
-  dns:
-    - 8.8.8.8
-    - 1.1.1.1
+  dns: []
   
   # DNS hostnames to resolve to custom targets using the internal resolver.
   # This setting has no effect if a custom DNS resolver list is supplied above.
@@ -141,7 +139,7 @@ cpuType: ""
 # the Ubuntu session.
 #
 # Default: false
-layer: true
+layer: false
 
 # Custom provision scripts for the virtual machine.
 # Provisioning scripts are executed on startup and therefore needs to be idempotent.
