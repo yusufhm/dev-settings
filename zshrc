@@ -35,7 +35,7 @@ alias wsl_drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff
 export ITERM2_SQUELCH_MARK=1
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.10/bin:$PATH"
+export PATH="/opt/homebrew/opt/python/bin:$HOME/go/bin:$HOME/Library/Python/3.10/bin:$PATH"
 
 # Install with `curl -LO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases`
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
@@ -44,20 +44,11 @@ export PATH="$HOME/go/bin:/opt/homebrew/opt/python/bin:$HOME/Library/Python/3.10
 alias kctx="kubectx"
 alias kns="kubens"
 
-alias kgov3="kubectl --context=amazeeio-govcms3"
-alias kgov4="kubectl --context=amazeeio-govcms4"
-alias kgov5="kubectl --context=amazeeio-govcms5"
-alias kgov6="kubectl --context=amazeeio-govcms6"
-alias kgov7="kubectl --context=amazeeio-govcms7"
-alias kgov9="kubectl --context=amazeeio-govcms9"
-alias kkurnik="kubectl --kubeconfig=/Users/yusuf/projects/server-ops/.kubeconfig/kurnik.yaml"
-alias ksalsa="kubectl --kubeconfig=$HOME/.kube/config-salsa-hosting"
-
 eval "$(direnv hook zsh)"
 
 command -v flux >/dev/null && . <(flux completion zsh)
 
-export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config-amazeeio-sdp:$HOME/.kube/config-salsa-hosting:$HOME/.kube/config-oracle
+export KUBECONFIG=$HOME/.kube/config
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yusuf/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -83,3 +74,17 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.serverless/bin:$PATH"
 
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+# export PATH="/Users/yusuf/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Flutter SDK
+export PATH="$HOME/projects/flutter/bin:$PATH"
+
+export-colima-ssh-auth-sock() {
+  if [ ! -z "$(colima status 2>&1 | grep runtime)" ]; then
+    export COLIMA_SSH_AUTH_SOCK=$(colima ssh env | grep SSH_AUTH_SOCK | cut -d = -f 2)
+  fi
+}
+add-zsh-hook precmd export-colima-ssh-auth-sock
