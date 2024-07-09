@@ -88,3 +88,9 @@ export-colima-ssh-auth-sock() {
   fi
 }
 add-zsh-hook precmd export-colima-ssh-auth-sock
+
+toggl-tempo-sync() {
+  pushd ~/projects/toggl-tempo
+  go run . ${@}
+  popd
+}
