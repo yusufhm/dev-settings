@@ -94,3 +94,5 @@ toggl-tempo-sync() {
   go run . ${@}
   popd
 }
+
+export PIPX_DEFAULT_PYTHON=/opt/homebrew/opt/python@3.11/libexec/bin/python
