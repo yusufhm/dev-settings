@@ -1,0 +1,11 @@
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - software-properties-common
+    - vim
+    - zsh
+
+- name: Install ansible
+  ansible.builtin.import_tasks: ansible.yml

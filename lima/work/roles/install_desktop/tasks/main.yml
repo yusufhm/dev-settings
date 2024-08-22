@@ -1,0 +1,35 @@
+- name: Get user's linux account info
+  ansible.builtin.command: passwd -S yusuf
+  register: userinfo
+  changed_when: false
+
+# Allow login with password for the created user.
+# Equivalent of `passwd -u yusuf`
+- name: Unlock user password
+  ansible.builtin.user:
+    name: yusuf
+    create_home: false
+    password_lock: false
+    # Generated locally with `ansible -i localhost, -m debug -a "msg={{ 'passw0rd' | password_hash('sha512', 'mysecretsalt') }}" localhost`
+    password: '$6$rounds=656000$mysecretsalt$.ixNyLkxgrpMfDQlZPyCuhGyRXzKR/uEJ2zQKgQWQn2WvAxGIQXarCjvc0dmBOlAPNq0z7fivWZxeZ4pm31Dn.'
+  when: "'yusuf L' in userinfo.stdout"
+
+- name: Install desktop
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ubuntu-desktop
+    - task-gnome-desktop
+  notify: reboot
+
+# Allow gnome login for the created user.
+# Equivalent of `sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup`
+- name: Disable SystemAccount for gnome
+  ansible.builtin.lineinfile:
+    path: /var/lib/AccountsService/users/gnome-initial-setup
+    regexp: '^SystemAccount=true'
+    line: SystemAccount=false
+    owner: root
+    group: root
+    mode: '0600'

@@ -2,41 +2,5 @@
   hosts: all
   gather_facts: true
   become: true
-  tasks:
-    - name: Install packages
-      ansible.builtin.apt:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - vim
-        - ubuntu-desktop
-        - software-properties-common
-        - task-gnome-desktop
-        - terminator
-        - zsh
-
-    # Allow login with password for the created user.
-    # Equivalent of `passwd -u yusuf`
-    - name: Unlock user password
-      ansible.builtin.user:
-        name: yusuf
-        password_lock: false
-
-    # Allow gnome login for the created user.
-    # Equivalent of `sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup`
-    - name: Disable SystemAccount for gnome
-      ansible.builtin.lineinfile:
-        path: /var/lib/AccountsService/users/gnome-initial-setup
-        regexp: '^SystemAccount=true'
-        line: SystemAccount=false
-        owner: root
-        group: root
-        mode: '0600'
-
-    - name: Add ansible ppa.
-      ansible.builtin.apt_repository:
-        repo: 'ppa:ansible/ansible'
-
-    - name: Install ansible
-      ansible.builtin.apt:
-        name: ansible
+  roles:
+    - role: install_packages

@@ -1,0 +1,9 @@
+- name: Add ansible ppa.
+  ansible.builtin.command:
+    cmd: add-apt-repository --yes --update ppa:ansible/ansible
+    creates: /etc/apt/sources.list.d/ansible-ubuntu-ansible-noble.sources
+
+- name: Install ansible
+  ansible.builtin.apt:
+    name: ansible
+    state: present

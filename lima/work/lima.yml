@@ -15,16 +15,18 @@ ssh:
 upgradePackages: false
 
 provision:
+- mode: boot
+  script: |
+    systemctl disable NetworkManager-wait-online.service
+    # Booting is slow because of systemd-networkd-wait-online, disable it.
+    systemctl stop systemd-networkd-wait-online
+    systemctl disable systemd-networkd-wait-online
 # `system` is executed with root privileges
 - mode: system
   script: |
     #!/bin/bash
     set -eux -o pipefail
     export DEBIAN_FRONTEND=noninteractive
-
-    # Booting is slow because of systemd-networkd-wait-online, disable it.
-    systemctl stop systemd-networkd-wait-online
-    systemctl disable systemd-networkd-wait-online
 
     # Update the ports mirror.
     sed -i 's/http\:\/\/ports\.ubuntu\.com/http\:\/\/mu\.ports\.ubuntu\.com/g' /etc/apt/sources.list.d/ubuntu.sources
@@ -34,8 +36,8 @@ provision:
 - mode: ansible
   playbook: playbook.yml
 
-# networks:
-# - vzNAT: true
+containerd:
+  user: false
 
 video:
   display: default
