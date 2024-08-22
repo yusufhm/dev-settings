@@ -8,7 +8,7 @@ That will create the VM and provision.
 
 Replace the create lima config with a symlink to this repo:
 ```sh
-mv ~/.lima/work/lima.yaml ~/yusuf/.lima/work/lima.bak
+mv ~/.lima/work/lima.yaml ~/.lima/work/lima.yaml.bak
 ln -s ~/dev-settings/lima/work/lima.yml ~/.lima/work/lima.yaml
 ```
 
