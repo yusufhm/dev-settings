@@ -5,6 +5,7 @@
   loop:
     - ca-certificates
     - curl
+    - pipx
     - software-properties-common
     - vim
     - zsh
@@ -14,6 +15,19 @@
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
+
+- name: Add repo to install previous Python versions
+  ansible.builtin.command:
+    cmd: add-apt-repository ppa:deadsnakes/ppa --yes
+    creates: /etc/apt/sources.list.d/deadsnakes-ubuntu-ppa-noble.sources
+
+- name: Ensure pipx path
+  ansible.builtin.lineinfile:
+    path: /home/yusuf.linux/.bashrc
+    line: 'export PATH="$PATH:/home/yusuf.linux/.local/bin"'
+    owner: yusuf
+    group: yusuf
+    mode: '0644'
 
 - name: Install ansible
   ansible.builtin.import_tasks: ansible.yml

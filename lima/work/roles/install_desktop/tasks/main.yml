@@ -1,5 +1,6 @@
 - name: Get user's linux account info
-  ansible.builtin.command: passwd -S yusuf
+  ansible.builtin.command:
+    cmd: passwd -S yusuf
   register: userinfo
   changed_when: false
 

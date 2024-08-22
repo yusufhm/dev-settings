@@ -1,9 +1,21 @@
-- name: Add ansible ppa.
-  ansible.builtin.command:
-    cmd: add-apt-repository --yes --update ppa:ansible/ansible
-    creates: /etc/apt/sources.list.d/ansible-ubuntu-ansible-noble.sources
-
-- name: Install ansible
+- name: Install python 3.11
   ansible.builtin.apt:
-    name: ansible
+    name: python3.11
     state: present
+
+- name: Install ansible with pipx for python 3.11
+  ansible.builtin.command:
+    cmd: pipx install --python python3.11 ansible
+    creates: /home/yusuf.linux/.local/share/pipx/venvs/ansible/bin/ansible
+
+- name: Create symlinks for ansible
+  ansible.builtin.file:
+    src: /home/yusuf.linux/.local/share/pipx/venvs/ansible/bin/{{ item }}
+    dest: /home/yusuf.linux/.local/bin/{{ item }}
+    state: link
+  loop:
+    - ansible
+    - ansible-doc
+    - ansible-inventory
+    - ansible-playbook
+    - ansible-vault
