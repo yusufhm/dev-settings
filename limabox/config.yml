@@ -29,7 +29,6 @@ provision:
     # Update the ports mirror.
     cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.orig
     sed -i 's/http\:\/\/ports\.ubuntu\.com/http\:\/\/mu\.ports\.ubuntu\.com/g' /etc/apt/sources.list.d/ubuntu.sources
-    sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup
     apt-get update && apt-get upgrade -y
 
     # Install the desktop.
@@ -37,6 +36,10 @@ provision:
 
     # Allow login with password for the created user.
     passwd -u yusuf
+
+    # Allow gnome login for the user.
+    sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup
+
 # # `user` is executed without root privileges
 # - mode: user
 #   script: |
