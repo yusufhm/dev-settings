@@ -23,10 +23,10 @@
 
 - name: Ensure pipx path
   ansible.builtin.lineinfile:
-    path: /home/yusuf.linux/.bashrc
-    line: 'export PATH="$PATH:/home/yusuf.linux/.local/bin"'
-    owner: yusuf
-    group: yusuf
+    path: "{{ ansible_user_dir }}/.bashrc"
+    line: 'export PATH="$PATH:{{ ansible_user_dir }}/.local/bin"'
+    owner: "{{ vm_user }}"
+    group: "{{ vm_user_group }}"
     mode: '0644'
 
 - name: Install ansible

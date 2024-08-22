@@ -21,5 +21,5 @@ limactl shell work
 Run playbook manually:
 
 ```sh
-ansible-playbook -i ~/.lima/work/ansible-inventory.yaml playbook.yml -v
+ansible-playbook -i ~/.lima/work/ansible-inventory.yaml ~/dev-settings/playbooks/provision-lima.yml -v
 ```

@@ -34,7 +34,7 @@ provision:
 
 # `ansible` is required on the host for this to work.
 - mode: ansible
-  playbook: playbook.yml
+  playbook: ../../playbooks/provision-lima.yml
 
 containerd:
   user: false

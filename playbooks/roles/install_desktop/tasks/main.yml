@@ -1,19 +1,19 @@
 - name: Get user's linux account info
   ansible.builtin.command:
-    cmd: passwd -S yusuf
+    cmd: "passwd -S {{ vm_user }}"
   register: userinfo
   changed_when: false
 
 # Allow login with password for the created user.
-# Equivalent of `passwd -u yusuf`
+# Equivalent of `passwd -u {{ vm_user }}`
 - name: Unlock user password
   ansible.builtin.user:
-    name: yusuf
+    name: "{{ vm_user }}"
     create_home: false
     password_lock: false
     # Generated locally with `ansible -i localhost, -m debug -a "msg={{ 'passw0rd' | password_hash('sha512', 'mysecretsalt') }}" localhost`
     password: '$6$rounds=656000$mysecretsalt$.ixNyLkxgrpMfDQlZPyCuhGyRXzKR/uEJ2zQKgQWQn2WvAxGIQXarCjvc0dmBOlAPNq0z7fivWZxeZ4pm31Dn.'
-  when: "'yusuf L' in userinfo.stdout"
+  when: "{{ vm_user }} ~ ' L' in userinfo.stdout"
 
 - name: Install desktop
   ansible.builtin.apt:

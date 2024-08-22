@@ -1,4 +1,4 @@
-- name: Workbox tasks
+- name: Lima provisioning playbook
   hosts: all
   gather_facts: true
   become: true
