@@ -1,0 +1,53 @@
+# Defaults: https://github.com/lima-vm/lima/blob/master/examples/default.yaml
+
+vmType: vz
+
+images:
+# Hint: run `limactl prune` to invalidate the cache
+- location: "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-arm64.img"
+  arch: "aarch64"
+
+ssh:
+  localPort: 2222
+  forwardAgent: true
+
+# We want to update the ports mirror before upgrading.
+upgradePackages: false
+
+provision:
+# `system` is executed with root privileges
+- mode: system
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Booting is slow because of systemd-networkd-wait-online, disable it.
+    systemctl stop systemd-networkd-wait-online
+    systemctl disable systemd-networkd-wait-online
+
+    # Update the ports mirror.
+    cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.orig
+    sed -i 's/http\:\/\/ports\.ubuntu\.com/http\:\/\/mu\.ports\.ubuntu\.com/g' /etc/apt/sources.list.d/ubuntu.sources
+    sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup
+    apt-get update && apt-get upgrade -y
+
+    # Install the desktop.
+    apt-get install -y vim ubuntu-desktop task-gnome-desktop zsh
+
+    # Allow login with password for the created user.
+    passwd -u yusuf
+# # `user` is executed without root privileges
+# - mode: user
+#   script: |
+#     #!/bin/bash
+#     set -eux -o pipefail
+#     cat <<EOF > ~/.vimrc
+#     set number
+#     EOF
+
+# networks:
+# - vzNAT: true
+
+video:
+  display: default
