@@ -27,27 +27,12 @@ provision:
     systemctl disable systemd-networkd-wait-online
 
     # Update the ports mirror.
-    cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.orig
     sed -i 's/http\:\/\/ports\.ubuntu\.com/http\:\/\/mu\.ports\.ubuntu\.com/g' /etc/apt/sources.list.d/ubuntu.sources
-    apt-get update && apt-get upgrade -y
+    apt-get update && apt-get upgrade --yes
 
-    # Install the desktop.
-    apt-get install -y vim ubuntu-desktop task-gnome-desktop zsh
-
-    # Allow login with password for the created user.
-    passwd -u yusuf
-
-    # Allow gnome login for the user.
-    sed -i s/SystemAccount=true/SystemAccount=false/ /var/lib/AccountsService/users/gnome-initial-setup
-
-# # `user` is executed without root privileges
-# - mode: user
-#   script: |
-#     #!/bin/bash
-#     set -eux -o pipefail
-#     cat <<EOF > ~/.vimrc
-#     set number
-#     EOF
+# `ansible` is required on the host for this to work.
+- mode: ansible
+  playbook: playbook.yml
 
 # networks:
 # - vzNAT: true
