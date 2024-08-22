@@ -3,9 +3,20 @@
     name: "{{ item }}"
     state: present
   loop:
+    - ca-certificates
+    - curl
     - software-properties-common
     - vim
     - zsh
 
+- name: Ensure keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
 - name: Install ansible
   ansible.builtin.import_tasks: ansible.yml
+
+- name: Install docker
+  ansible.builtin.import_tasks: docker.yml
