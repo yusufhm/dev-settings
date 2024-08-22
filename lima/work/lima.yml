@@ -39,5 +39,6 @@ provision:
 containerd:
   user: false
 
-video:
-  display: default
+# Uncomment to enable the GUI (useful for debugging).
+# video:
+#   display: default
