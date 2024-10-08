@@ -22,3 +22,7 @@ session_token=$(echo $AWS_TOKEN | jq -r '.Credentials.SessionToken')
 aws configure set aws_access_key_id ${access_key_id} --profile ${AWS_MFA_PROFILE}
 aws configure set aws_secret_access_key ${secret_access_key} --profile ${AWS_MFA_PROFILE}
 aws configure set aws_session_token ${session_token} --profile ${AWS_MFA_PROFILE}
+
+# Refresh environment.
+pushd ~
+popd
