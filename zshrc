@@ -43,6 +43,7 @@ export PATH="/opt/homebrew/opt/python/bin:$HOME/go/bin:$HOME/Library/Python/3.10
 # Install with `brew install kubectx`
 alias kctx="kubectx"
 alias kns="kubens"
+alias compose="docker compose"
 
 eval "$(direnv hook zsh)"
 
