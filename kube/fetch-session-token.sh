@@ -3,11 +3,11 @@
 # This script is used to create an AWS session token using MFC from 1password.
 set -eu
 
-AWS_AUTH_PROFILE=${AWS_AUTH_PROFILE:-"govcms-eks01"}
-AWS_OTP_ONEPASS_ITEM_NAME=${AWS_OTP_ONEPASS_ITEM_NAME:-"AWS - govcms-eks01"}
-AWS_MFC_DEVICE_ARN=${AWS_MFC_DEVICE_ARN:-"arn:aws:iam::863998171688:mfa/1password"}
-AWS_MFA_PROFILE=${AWS_MFA_PROFILE:-"govcms-eks01-mfa"}
 AWS_REGION=${AWS_REGION:-"ap-southeast-2"}
+AWS_AUTH_PROFILE=${AWS_AUTH_PROFILE}
+AWS_OTP_ONEPASS_ITEM_NAME=${AWS_OTP_ONEPASS_ITEM_NAME}
+AWS_MFC_DEVICE_ARN=${AWS_MFC_DEVICE_ARN}
+AWS_MFA_PROFILE=${AWS_MFA_PROFILE}
 
 # Get the MFA token from 1password.
 MFA_TOKEN=$(op read "op://Employee/${AWS_OTP_ONEPASS_ITEM_NAME}/one-time password?attribute=otp")
